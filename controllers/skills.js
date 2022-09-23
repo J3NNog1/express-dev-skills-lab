@@ -21,7 +21,40 @@ function index(req, res) {
   })
 }
 
+function newSkill(req,res) {
+  // console.log('This works!') // WHEN I CONSOLED LOGGED IT, IT SHOWED UP IN VSCODE SERVER TERMINAL!
+  res.render('skills/new')
+}
+
+function create(req, res) {
+  // console.log('req.body')
+  Skill.create(req.body)
+  .then(skill => {
+		// REDIRECT SKILLS
+    res.redirect('/skills')
+  })
+  .catch(error => {
+    console.log(error)
+    res.redirect('/skills')
+  })
+}
+
+function show(req, res) {
+  Skill.findById(req.params.id)
+  .then(skill => {
+    res.render('skills/show', {
+      skills: skills
+    })
+  })
+  .catch(error => {
+    console.log(error)
+    res.redirect('/skills')
+  })
+}
 
 export {
   index,
+  newSkill as new,
+  create,
+  show,
 }
