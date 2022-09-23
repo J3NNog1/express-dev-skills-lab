@@ -29,7 +29,7 @@ app.use(
     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
   )
 )
- 
+
 // mounted routers
 app.use('/', indexRouter)
 app.use('/skills', skillsRouter)
